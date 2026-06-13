@@ -7,6 +7,8 @@ let mouseX = 0, mouseY = 0;
 let ringX = 0, ringY = 0;
 const RING_LAG = 0.12; // lower = more lag / trail feel
 
+
+
 // Trail dots pool
 const TRAIL_COUNT = 6;
 const trail = [];
@@ -170,6 +172,69 @@ skillFills.forEach(bar => barObserver.observe(bar));
 
 
 /* ─── Skills tab filter ───────────────────────────────────── */
+
+
+/* ─── Skills: show first N, hide rest ────────────────────── */
+const INITIAL_VISIBLE = 8; // chips shown before "See More"
+const allChips = document.querySelectorAll('.skill-chip');
+const seeMoreBtn = document.getElementById('skillsSeeMore');
+let expanded = false;
+let currentCat = 'all';
+
+function applyVisibility() {
+  let visibleCount = 0;
+  allChips.forEach(chip => {
+    const matchesCat = currentCat === 'all' || chip.dataset.cat === currentCat;
+    if (!matchesCat) {
+      chip.classList.add('hidden');
+      chip.classList.remove('skill-hidden');
+      return;
+    }
+    chip.classList.remove('hidden');
+    visibleCount++;
+    if (!expanded && visibleCount > INITIAL_VISIBLE) {
+      chip.classList.add('skill-hidden');
+    } else {
+      chip.classList.remove('skill-hidden');
+    }
+  });
+
+  // Count how many match current cat
+  const totalVisible = [...allChips].filter(c =>
+    currentCat === 'all' || c.dataset.cat === currentCat
+  ).length;
+
+  // Hide button if everything fits already
+  seeMoreBtn.parentElement.style.display =
+    totalVisible <= INITIAL_VISIBLE ? 'none' : 'flex';
+}
+
+// Tab filter
+document.querySelectorAll('.skills-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.skills-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentCat = tab.dataset.cat;
+    expanded = false;
+    seeMoreBtn.classList.remove('expanded');
+    applyVisibility();
+  });
+});
+
+// See more toggle
+seeMoreBtn.addEventListener('click', () => {
+  expanded = !expanded;
+  seeMoreBtn.classList.toggle('expanded', expanded);
+  applyVisibility();
+
+  // Scroll back up to skills section if collapsing
+  if (!expanded) {
+    document.getElementById('skills').scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+// Init
+applyVisibility();
 const tabs = document.querySelectorAll('.skills-tab');
 const chips = document.querySelectorAll('.skill-chip');
 
@@ -188,6 +253,47 @@ tabs.forEach(tab => {
     });
   });
 });
+
+
+/* ─── cert see-more ────────────────────────────────────────── */
+
+const certWrap    = document.getElementById('certWrap');
+const certSeeMore = document.getElementById('certSeeMore');
+let certExpanded  = false;
+
+certSeeMore.addEventListener('click', () => {
+  certExpanded = !certExpanded;
+  certWrap.classList.toggle('expanded', certExpanded);
+  certSeeMore.classList.toggle('expanded', certExpanded);
+  certSeeMore.querySelector('.cert-text').textContent =
+    certExpanded ? 'See Less' : 'See More';
+
+  if (!certExpanded) {
+    document.getElementById('certifications').scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+
+
+/* ─── OSS see-more (blur curtain) ────────────────────────── */
+const ossWrap    = document.getElementById('ossWrap');
+const ossSeeMore = document.getElementById('ossSeeMore');
+let ossExpanded  = false;
+
+ossSeeMore.addEventListener('click', () => {
+  ossExpanded = !ossExpanded;
+  ossWrap.classList.toggle('expanded', ossExpanded);
+  ossSeeMore.classList.toggle('expanded', ossExpanded);
+  ossSeeMore.querySelector('.osm-text').textContent =
+    ossExpanded ? 'See Less' : 'See More';
+
+  if (!ossExpanded) {
+    document.getElementById('opensource').scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+
+
 
 /* ─── Stat counter animation ─────────────────────────────── */
 function animateCount(el) {
@@ -252,6 +358,9 @@ document.getElementById('contactForm').addEventListener('submit', (e) => {
     e.target.reset();
   }, 3000);
 });
+
+
+
 
 /* ─── Smooth section transitions for same-page links ──────── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
