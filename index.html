@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anagha R S — Backend & AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- custom dynamic cursor (desktop / fine-pointer devices only, see script.js) -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- side nav -->
+<nav class="side-nav" id="sideNav">
+  <div class="nav-trigger"></div>
+  <ul>
+    <li><a href="#home" data-label="Home">01</a></li>
+    <li><a href="#work" data-label="Work">02</a></li>
+    <li><a href="#oss" data-label="Open Source">03</a></li>
+    <li><a href="#articles" data-label="Articles">04</a></li>
+    <li><a href="#stack" data-label="Stack">04</a></li>
+    <li><a href="#contact" data-label="Contact">05</a></li>
+  </ul>
+</nav>
+
+<!-- top center icon nav -->
+<nav class="top-nav">
+  <a href="#home" class="top-nav-item">
+    <img src="assets/icons/home.png" alt="Home" />
+  </a>
+  <a href="#about" class="top-nav-item">
+    <img src="assets/icons/information-button.png" alt="About" />
+  </a>
+    <a href="#experience" class="top-nav-item">
+    <img src="assets/icons/suitcase.png" alt="Experience" />
+  </a>
+  <a href="#work" class="top-nav-item">
+    <img src="assets/icons/terminal.png" alt="Works" />
+  </a>
+    <a href="#articles" class="top-nav-item">
+    <img src="assets/icons/copywriting.png" alt="medium" />
+  </a>
+  <a href="#education" class="top-nav-item">
+    <img src="assets/icons/graduation.png" alt="Education" />
+  </a>
+
+  <a href="#contact" class="top-nav-item">
+    <img src="assets/icons/email.png" alt="Contact" />
+  </a>
+</nav>
+
+<button id="themeToggle" aria-label="Toggle light and dark mode">
+  <span class="theme-track">
+    <svg class="theme-icon icon-sun" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5V5M12 19V21.5M4.2 4.2L6 6M18 18L19.8 19.8M2.5 12H5M19 12H21.5M4.2 19.8L6 18M18 6L19.8 4.2"
+        stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-icon icon-moon" viewBox="0 0 24 24" fill="none">
+      <path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"
+        stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="currentColor" fill-opacity="0.12"/>
+    </svg>
+  </span>
+</button>
+
+<main>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="hero-prompt">&gt;</span> hi, <span class="accent hero-name">anagha</span> here<span class="hero-blink">_</span>
+        </h1>
+        <p class="hero-sub">I enjoy building AI applications, backend services,
+           and developer-focused tools. My interests include machine learning,
+            large language models, and designing software that balances performance with simplicity.</p>
+
+<div class="hero-actions">
+
+    <a href="mailto:anaghars11165@gmail.com" class="hero-cta">
+        <!-- Mail SVG -->
+        <svg viewBox="0 0 20 20" fill="none">
+            <path d="M2.5 5.5L10 11L17.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="2.5" y="4" width="15" height="12" rx="1.5" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+        Say Hi
+    </a>
+
+    <a href="https://github.com/anahaaaa"
+       class="hero-icon"
+       target="_blank"
+       aria-label="GitHub">
+
+        <img src="assets/icons/github.png" alt="GitHub">
+
+    </a>
+
+    <a href="https://linkedin.com/in/YOUR-LINKEDIN"
+       class="hero-icon"
+       target="_blank"
+       aria-label="LinkedIn">
+
+        <img src="assets/icons/linkedin.png" alt="LinkedIn">
+
+    </a>
+
+    <a href="https://medium.com/@YOUR_MEDIUM"
+       class="hero-icon"
+       target="_blank"
+       aria-label="Medium">
+
+        <img src="assets/icons/article.png" alt="Medium">
+
+    </a>
+
+</div>
+
+        
+      </div>
+
+      <div class="hero-portrait">
+        <canvas id="asciiCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+<section id="about" class="about">
+    <h2 class="section-title">/about me.</h2>
+
+    <div class="about-content">
+
+        <div class="about-description">
+            <p>
+                  I'm a recent M.Tech graduate in Data Science &amp; AI with a passion for AI engineering and software development. I enjoy building intelligent applications, scalable backend systems, and machine learning solutions using modern technologies. I'm currently seeking opportunities where I can contribute to meaningful products while continuing to learn and grow.
+</p>
+            </p>
+
+            <p class="about-intro">
+                Here are some technologies I've been working with:
+            </p>
+
+            <div class="tech-grid">
+                <ul>
+                    <li>Python</li>
+                    <li>FastAPI</li>
+                    <li>PostgreSQL</li>
+                    <li>Docker</li>
+                </ul>
+
+                <ul>
+                    <li>LangChain &amp; LangGraph</li>
+                    <li>Next.js</li>
+                    <li>TypeScript</li>
+                    <li>AWS</li>
+                </ul>
+            </div>
+
+            <p>
+                Outside of coding, I enjoy reading books about space,
+                 astronomy, and physics, exploring philosophical ideas,
+                  and staying curious about the world through science, technology,
+                   and continuous learning.
+            </p>
+        </div>
+
+    </div>
+</section>
+  <!-- EXPERIENCE -->
+  <section id="experience" class="experience">
+    <h2 class="section-title">/experience.</h2>
+
+    <div class="tab-panel" id="expPanel">
+      <div class="tab-list" id="expTabList"></div>
+      <div class="tab-detail" id="expDetail"></div>
+    </div>
+  </section>
+
+
+  <!-- WORK -->
+  <section id="work" class="work">
+    <h2 class="section-title">/Projects.</h2>
+    
+
+    <!-- Featured carousel: projects that HAVE a screenshot/video -->
+    <div class="feature-outer" id="featureOuter">
+      <button class="feature-arrow prev" id="featPrev" aria-label="Previous featured project">‹</button>
+      <button class="feature-arrow next" id="featNext" aria-label="Next featured project">›</button>
+      <div class="feature-card" id="featureCard"></div>
+      <div class="feature-dots" id="featureDots"></div>
+    </div>
+
+    <!-- Compact grid: projects with NO screenshot/video yet -->
+    <div class="proj-grid" id="projGrid"></div>
+  </section>
+
+  <!-- OSS / TERMINAL COMMIT LOG -->
+  <section id="oss" class="oss">
+    <h2 class="section-title">//open source.</h2>
+    <p class="oss-hint">click a line to expand it</p>
+
+    <div class="log-terminal" id="logTerminal">
+      <div class="log-titlebar">
+        <span class="log-dot red"></span>
+        <span class="log-dot yellow"></span>
+        <span class="log-dot green"></span>
+        <span class="log-titlebar-label">anagha@oss — git log --oneline</span>
+      </div>
+
+      <div class="log-list" id="logList">
+
+        <div class="log-row" data-i="0">
+          <div class="log-row-main">
+            <span class="log-caret">›</span>
+            <span class="log-hash">a3f9c2e</span>
+            <span class="log-dotstatus merged" title="merged"></span>
+            <span class="log-repo">PatchPilot</span>
+            <span class="log-oneline">REST APIs + ML severity ranking for scan findings</span>
+          </div>
+          <div class="log-row-body">
+            <p>Developed REST APIs for findings retrieval and verification, and built a
+            machine-learning-based severity ranking pipeline that's now integrated into
+            production scan workflows.</p>
+            <div class="log-meta">
+              <span class="log-tech">Python</span>
+              <span class="log-tech">REST APIs</span>
+              <span class="log-tech">Machine Learning</span>
+              <a href="#" target="_blank" rel="noopener" class="log-link">view →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="log-row" data-i="1">
+          <div class="log-row-main">
+            <span class="log-caret">›</span>
+            <span class="log-hash">d81e04b</span>
+            <span class="log-dotstatus merged" title="merged"></span>
+            <span class="log-repo">localmind</span>
+            <span class="log-oneline">session cloning API endpoint</span>
+          </div>
+          <div class="log-row-body">
+            <p>Added a session cloning API endpoint for duplicating chat sessions while
+            preserving the full conversation history — used when a user wants to branch a
+            conversation without losing prior context.</p>
+            <div class="log-meta">
+              <span class="log-tech">Python</span>
+              <span class="log-tech">REST APIs</span>
+              <a href="#" target="_blank" rel="noopener" class="log-link">view →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="log-row" data-i="2">
+          <div class="log-row-main">
+            <span class="log-caret">›</span>
+            <span class="log-hash">7c2a91f</span>
+            <span class="log-dotstatus merged" title="merged"></span>
+            <span class="log-repo">Algo-Infinity-Verse</span>
+            <span class="log-oneline">interactive recursion learning page</span>
+          </div>
+          <div class="log-row-body">
+            <p>Built an interactive recursion learning page with visualizations, code examples,
+            and practice exercises, using plain HTML, CSS, and JavaScript so it stays fast and
+            dependency-free.</p>
+            <div class="log-meta">
+              <span class="log-tech">HTML</span>
+              <span class="log-tech">CSS</span>
+              <span class="log-tech">JavaScript</span>
+              <a href="#" target="_blank" rel="noopener" class="log-link">view →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="log-row" data-i="3">
+          <div class="log-row-main">
+            <span class="log-caret">›</span>
+            <span class="log-hash">f60b3d2</span>
+            <span class="log-dotstatus merged" title="merged"></span>
+            <span class="log-repo">Wagle MCP</span>
+            <span class="log-oneline">pytest coverage for CLI workflows</span>
+          </div>
+          <div class="log-row-body">
+            <p>Developed Pytest-based test cases for CLI workflows, improving reliability and
+            validation of MCP command execution across the tool's supported commands.</p>
+            <div class="log-meta">
+              <span class="log-tech">Python</span>
+              <span class="log-tech">Pytest</span>
+              <span class="log-tech">CLI</span>
+              <a href="#" target="_blank" rel="noopener" class="log-link">view →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="log-cursor-line"><span class="prompt-symbol">&gt;</span><span class="log-cursor"></span></div>
+    </div>
+  </section>
+
+  <!-- ARTICLES -->
+<section id="articles" class="articles">
+  <h2 class="section-title">/articles.</h2>
+  <p class="work-hint">drag a card aside to flip through the stack · or use the arrows</p>
+
+  <div class="deck-wrap">
+    <div class="deck" id="articleDeck"></div>
+    <div class="deck-controls">
+      <button class="deck-arrow" id="deckPrev" aria-label="Previous article">‹</button>
+      <div class="deck-dots" id="deckDots"></div>
+      <button class="deck-arrow" id="deckNext" aria-label="Next article">›</button>
+    </div>
+  </div>
+</section>
+
+  <!-- STACK -->
+  <section id="stack" class="stack">
+    <h2 class="section-title">//tech stack.</h2>
+    <p class="work-hint">pick a domain to see the toolkit, ranked by how much I reach for it</p>
+
+    <div class="stack-panel">
+
+      
+  <div class="stack-tabs" id="stackTabs" role="tablist">
+        
+          
+          
+         
+        
+        <ul class="stack-dropdown-list" id="stackDropdownList" role="listbox" tabindex="-1"></ul>
+      </div>
+
+      <div class="stack-grid" id="stackGrid"></div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="education">
+    <h2 class="section-title">/education.</h2>
+
+    <div class="tab-panel" id="eduPanel">
+      <div class="tab-list" id="eduTabList"></div>
+      <div class="tab-detail" id="eduDetail"></div>
+    </div>
+  </section>
+
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <h2 class="section-title">/Get in touch.</h2>
+    <p class="contact-line">Chat with my AI below, or reach me directly.</p>
+    <div class="contact-links">
+      <a href="mailto:anaghars11165@gmail.com"><img src="assets/icons/email.png"></a>
+      <a href="https://github.com/anahaaaa" target="_blank" rel="noopener"><img src="assets/icons/github.png"></a>
+      <a href="#"><img src="assets/icons/linkedin.png"></a>
+    </div>
+  </section>
+
+</main>
+
+<!-- CHATBOT (conversational) -->
+<div id="botLauncherWrap" class="bot-launcher-wrap">
+  <span class="bot-tooltip">chat with my AI</span>
+  <div id="botLauncher" class="bot-launcher" aria-label="Open chat">
+    <img src="assets/icons/final.svg" alt="Open chat" onerror="this.style.display='none'; this.parentElement.classList.add('fallback');" />
+  </div>
+</div>
+
+<div id="botTerminal" class="bot-terminal hidden">
+  <div class="bot-header">
+    <div class="bot-header-id">
+      <span class="bot-avatar">
+    <img src="assets/icons/avatar.png" alt="Avatar">
+</span>
+      <div class="bot-header-text">
+        <span class="bot-title">Anagha's AI</span>
+        <span class="bot-status"><i></i>online</span>
+      </div>
+    </div>
+    <div class="bot-header-actions">
+      <button id="botHelp" aria-label="Help">?</button>
+      <button id="botClose" aria-label="Close chat">×</button>
+    </div>
+  </div>
+
+  <div class="bot-output" id="botOutput"></div>
+
+  <div class="bot-chips" id="botChips"></div>
+
+  <div class="bot-input-line">
+    <input type="text" id="botInput" autocomplete="off" placeholder="Ask me about a project…" />
+    <button id="botSend" aria-label="Send message">
+      <svg viewBox="0 0 20 20" width="16" height="16" fill="none">
+        <path d="M2.5 10L17.5 3L13 17.5L9.5 11.5L2.5 10Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+<footer class="site-footer">
+    <p>© 2026 Anagha R S</p>
+    <p><a href="credits.html">Icon Credits</a></p>
+</footer>
+</html>
