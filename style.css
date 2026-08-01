@@ -586,10 +586,9 @@ section > * {
   padding-top: 4px;
 }
 
-/* ---------- OSS DIFF VIEWER (accordion) ---------- */
+/*  OSS CONTRIBUTIONS (accordion)  */
 .oss-hint { font-size: 11px; letter-spacing: 0.05em; color: var(--ink-dim); margin-bottom: 40px; }
-.diff-pr-simple { margin-bottom: 18px; }
-.diff-pr-simple:last-child { margin-bottom: 0; }
+
 .diff-list {
   display: flex;
   flex-direction: column;
@@ -653,22 +652,6 @@ section > * {
 
 .diff-repo-inner { padding: 0 20px 24px; }
 
-.diff-pr-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
-
-.diff-pr-tab {
-  font-family: var(--mono);
-  font-size: 11px;
-  padding: 5px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--line);
-  background: var(--bg);
-  color: var(--ink-dim);
-  cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-}
-.diff-pr-tab:hover { color: var(--ink); border-color: var(--accent-dim); }
-.diff-pr-tab.active { color: var(--bg); background: var(--accent); border-color: var(--accent); }
-
 .diff-context {
   font-size: 13px;
   line-height: 1.7;
@@ -677,39 +660,26 @@ section > * {
   margin-bottom: 14px;
 }
 
-
-
-
-
-
-
-
-.diff-prefix { width: 12px; flex-shrink: 0; opacity: 0.7; user-select: none; }
-
-.diff-add { background: rgba(63,185,80,0.12); }
-.diff-add .diff-prefix, .diff-add .diff-code { color: #3fb950; }
-
-.diff-del { background: rgba(248,81,73,0.1); }
-.diff-del .diff-prefix, .diff-del .diff-code { color: #f85149; }
-
-.diff-ctx .diff-prefix, .diff-ctx .diff-code { color: var(--ink-dim); }
+.diff-pr-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
 
 .diff-pr-link {
   display: inline-block;
-  margin-top: 12px;
   font-size: 11.5px;
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--accent);
   padding-bottom: 1px;
+  width: fit-content;
   transition: color 0.25s ease;
 }
 .diff-pr-link:hover { color: var(--accent); }
+.diff-pr-link.is-issue { color: var(--ink-dim); border-bottom-color: var(--ink-dim); }
 
-
-
-.diff-pr-links { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
-.diff-pr-link.is-issue { color: var(--ink-dim); }
 .diff-repo-external {
   display: inline-block;
   font-size: 11.5px;
@@ -718,19 +688,17 @@ section > * {
   transition: color 0.25s ease;
 }
 .diff-repo-external:hover { color: var(--accent); }
+
 @media (prefers-reduced-motion: reduce) {
   .diff-repo-body { transition: none; }
   .diff-repo-caret { transition: none; }
 }
 
 @media (max-width: 700px) {
-  .diff-line { font-size: 10.5px; padding: 2px 12px; }
   .diff-repo-name { font-size: 1.05rem; }
   .diff-repo-toggle { padding: 15px 16px; gap: 10px; }
   .diff-repo-inner { padding: 0 16px 20px; }
-  .diff-card-bar { flex-wrap: wrap; }
 }
-
 /* ---------- ABOUT ---------- */
 .about { min-height: 100vh; padding: 120px 8vw; }
 .about-content { max-width: 900px; margin: 0 auto; }
@@ -884,9 +852,8 @@ section > * {
   .paper-page { transition: opacity 0.2s ease; }
 }
 
-/* ==========================================================
-   STACK — ranked toolkit grid (rendered inside the shared tab-panel)
-   ========================================================== */
+
+ /*  STACK — ranked toolkit grid (rendered inside the shared tab-panel) */
 .stack-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
@@ -968,9 +935,8 @@ section > * {
   .stack-orb-icon { width: 38px; height: 38px; }
 }
 
-/* ==========================================================
-   TAB PANEL — shared by Education, Experience & Stack
-   ========================================================== */
+
+   TAB PANEL — shared by Education, Experience & Stack */
 .tab-panel {
   display: flex;
   gap: 0;
@@ -1090,9 +1056,8 @@ section > * {
 .card-link.ask { color: var(--ink-dim); border-style: dashed; }
 .card-link.ask:hover { color: var(--accent); border-color: var(--accent); }
 
-/* ==========================================================
-   CHATBOT — conversational chat window
-   ========================================================== */
+
+  /* CHATBOT — conversational chat window */
 .bot-launcher-wrap {
   position: fixed;
   bottom: 28px; right: 28px;
@@ -1328,7 +1293,7 @@ section > * {
   .bot-launcher img { width: 70%; height: 70%; }
 }
 
-/* ---------- FOOTER / CREDITS ---------- */
+/* ---------- FOOTER---------- */
 .site-footer {
   margin-top: 80px;
   padding: 30px;
@@ -1352,13 +1317,11 @@ section > * {
   .side-nav { display: none; }
 }
 
-/* keyboard focus visibility */
 a:focus-visible, button:focus-visible, input:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-/* reduced motion (kept last to override all animation/transition rules above) */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }

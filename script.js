@@ -1,4 +1,3 @@
-/* ============ DRAGGABLE CHAT WIDGET ============ */
 function makeDraggable(handle, target, { onClick } = {}) {
   let dragging = false;
   let moved = false;
@@ -13,8 +12,7 @@ function makeDraggable(handle, target, { onClick } = {}) {
   }
 
   function onDown(e) {
-    // Let taps on real controls (buttons, links, inputs) inside the handle
-    // behave normally instead of being hijacked into a drag gesture.
+
     if (e.target.closest('button, a, input, textarea, select')) return;
 
     const point = e.touches ? e.touches[0] : e;
@@ -64,7 +62,6 @@ function makeDraggable(handle, target, { onClick } = {}) {
   window.addEventListener('touchend', onUp);
 }
 
-/* ============ THEME TOGGLE ============ */
 const themeToggle = document.getElementById('themeToggle');
 const root = document.documentElement;
 
@@ -78,9 +75,7 @@ themeToggle.addEventListener('click', () => {
   applyTheme(current === 'dark' ? 'light' : 'dark');
 });
 
-/* ==========================================================
-   EDUCATION & EXPERIENCE — tabbed sidebar panels
-   ========================================================== */
+
 const EDUCATION_ITEMS = [
   {
     tabLabel: 'M.Tech',
@@ -155,9 +150,7 @@ function initTabPanel({ items, listId, detailId }) {
 initTabPanel({ items: EDUCATION_ITEMS, listId: 'eduTabList', detailId: 'eduDetail' });
 initTabPanel({ items: EXPERIENCE_ITEMS, listId: 'expTabList', detailId: 'expDetail' });
 
-/* ==========================================================
-   ARTICLES — paper page turner
-   ========================================================== */
+
 const ARTICLES = [
   {
     tag: 'AI Reasoning',
@@ -244,7 +237,6 @@ function initArticlePaper() {
     attachDrag(currentPageEl());
   }
 
-  /* dir: 1 = next (old page exits left, new enters from right), -1 = prev */
   function transitionTo(newIndex, dir) {
     if (isAnimating) return;
     isAnimating = true;
@@ -301,7 +293,6 @@ function initArticlePaper() {
     });
   });
 
-  /* ---- live drag-follow swipe ---- */
   let startX = 0, dx = 0, dragging = false;
 
   function attachDrag(page) {
@@ -360,15 +351,7 @@ function initArticlePaper() {
 
 initArticlePaper();
 
-/* ==========================================================
-   WORK — DATA
-   Add an `image` (or `video`) path once you have a screenshot;
-   until then the project automatically renders in the compact grid.
 
-   `chatReply` is what the AI assistant says about the project — written
-   separately from `desc` (the copy shown on the project card) so the
-   chatbot never just parrots the card back to the visitor.
-   ========================================================== */
 const WORK_ITEMS = [
   {
     key: 'talenthire',
@@ -397,7 +380,7 @@ const WORK_ITEMS = [
     tech: 'Hugging Face · FastAPI · PyPDF2 · Python',
     chatReply: "This one compresses lengthy legal paperwork down to something readable — a 50-page PDF gets summarized in under 10 seconds by splitting the text into overlapping windows so the model never runs into its token ceiling.",
     image: '',
-    github: '#'
+    github: 'https://github.com/anahaaaa/Legal-Doc-Summarizer'
   },
   {
     key: 'routellm',
@@ -406,7 +389,7 @@ const WORK_ITEMS = [
     tech: 'FastAPI · PostgreSQL · Redis · Docker · OpenAI · Anthropic · Gemini',
     chatReply: "RouteLLM is basically a traffic cop for LLM APIs — one gateway in front of several providers that routes each request intelligently, falls back automatically if a provider is down, caches repeat calls, and keeps usage analytics in one place instead of scattered across dashboards.",
     image: '',
-    github: '#'
+    github: 'https://github.com/anahaaaa/ROUTE-LLM'
   },
   {
     key: 'smarthome',
@@ -441,7 +424,6 @@ const WORK_ITEMS = [
 const FEATURED = WORK_ITEMS.filter(p => p.image || p.video);
 const GRID_ONLY = WORK_ITEMS.filter(p => !p.image && !p.video);
 
-/* ============ WORK — FEATURED CAROUSEL ============ */
 const featureOuter = document.getElementById('featureOuter');
 const featureCard = document.getElementById('featureCard');
 const featureDots = document.getElementById('featureDots');
@@ -515,7 +497,7 @@ function renderFeatured(animate = true) {
   }
 }
 
-/* ---- autoplay ---- */
+
 let featureAutoplayTimer = null;
 const FEATURE_AUTOPLAY_MS = 5000;
 
@@ -564,7 +546,6 @@ if (featPrev && featNext) {
   });
 }
 
-/* ============ WORK — COMPACT GRID (no-media projects) ============ */
 function renderGrid() {
   if (!projGrid) return;
 
@@ -593,8 +574,6 @@ renderFeatured();
 renderGrid();
 startFeatureAutoplay();
 
-/* ==========================================================
-   OSS — diff viewer, grouped by repo, multi-PR aware */
 const OSS_CONTRIBUTIONS = [
   {
     repo: 'arachnode',
@@ -723,9 +702,6 @@ function initOssDiffs() {
 
 initOssDiffs();
 
-/* ==========================================================
-   STACK — domain tabs + ranked toolkit grid (uses shared .tab-list-item)
-   ========================================================== */
 const STACK_DOMAINS = {
   languages: {
     label: 'Languages',
@@ -874,9 +850,6 @@ function initStackSection() {
 
 initStackSection();
 
-/* ==========================================================
-   CHATBOT — conversational
-   ========================================================== */
 const launcherWrap = document.getElementById('botLauncherWrap');
 const terminal = document.getElementById('botTerminal');
 const closeBtn = document.getElementById('botClose');
@@ -897,13 +870,10 @@ WORK_ITEMS.forEach(p => {
   };
 });
 
-/* Only these show up by default in chat / rotation. Direct name lookup still
-   works for every project in WORK_ITEMS regardless of this list. */
 const FEATURED_CHAT_PROJECTS = ['talenthire', 'osscopilot', 'routellm'];
 
 const DEFAULT_CHIPS = ['Projects', 'Tech stack', 'Experience', 'About Anagha', 'Contact info', 'Help'];
 
-/* ---- rotation state for project chips ---- */
 const PROJECT_PAGE_SIZE = 2;
 let projectPage = 0;
 
@@ -980,10 +950,6 @@ function renderChips(list) {
   });
 }
 
-/* ---- project reply for the chatbot ----
-   Uses `chatReply` (written specifically for conversation) and renders the
-   tech stack separately underneath, instead of folding everything into one
-   dense paragraph the way the project card does. */
 function describeProject(key) {
   const p = PROJECTS[key];
   if (!p) return '';
@@ -996,7 +962,6 @@ function describeProject(key) {
   }`;
 }
 
-/* ---- intent matching: natural language instead of slash commands ---- */
 function matchIntent(raw) {
   const t = raw.toLowerCase().trim();
 
@@ -1128,7 +1093,6 @@ function bootMessage() {
   renderChips(DEFAULT_CHIPS);
 }
 
-/* shared helper — opens the chat pre-loaded with a natural-language question about a project */
 function openBotWithProject(key) {
   const name = PROJECTS[key] ? PROJECTS[key].name : key;
   terminal.classList.remove('hidden');
@@ -1144,12 +1108,6 @@ makeDraggable(launcherWrap, launcherWrap, {
   }
 });
 
-/* If the launcher (or open chat window) has been dragged to a custom
-   position, keep it inside the viewport when the screen size changes —
-   e.g. rotating the phone, or resizing a desktop window — so it can
-   never end up stuck off-screen. Elements that haven't been dragged yet
-   have no inline left/top and are simply left alone, anchored to their
-   default bottom-right CSS position. */
 function clampToViewport(el) {
   if (!el || !el.style.left || !el.style.top) return;
   const maxLeft = Math.max(8, window.innerWidth - el.offsetWidth - 8);
@@ -1202,7 +1160,6 @@ document.addEventListener('click', (e) => {
   openBotWithProject(askBtn.dataset.project);
 });
 
-/* ============ ASCII PORTRAIT (responsive) ============ */
 const canvas = document.getElementById("asciiCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -1347,13 +1304,11 @@ const ySpacing = 8;
 function computeLayout() {
   const w = canvas.width;
   const h = canvas.height;
-  if (!w || !h) return; // container not measurable yet (e.g. mid-layout) — skip and retry later
+  if (!w || !h) return; 
 
   const margin = 0.92;
   const scaleX = (w * margin) / (artCols * xSpacing);
   const scaleY = (h * margin) / (artRows * ySpacing);
-  // Fit strictly to the container — no forced minimum scale, or short mobile
-  // containers would render the art larger than the box and get clipped.
   const scale = Math.min(scaleX, scaleY, 1.6);
 
   const cellW = xSpacing * scale;
@@ -1373,7 +1328,6 @@ function computeLayout() {
     p.homeY = homeY;
 
     if (!p.settled) {
-      // scatter from a random point around the canvas on first layout
       const angle = Math.random() * Math.PI * 2;
       const radius = Math.max(canvas.width, canvas.height) * (0.5 + Math.random() * 0.5);
       p.x = homeX + Math.cos(angle) * radius;
@@ -1391,10 +1345,7 @@ function resize() {
 }
 
 resize();
-// Run again on the next couple of frames — on first paint the portrait's
-// container can still be mid-layout (webfonts, mobile browser chrome not
-// yet settled), so an early resize() can lock in a height that's taller
-// than what the box ends up being, cropping the top of the art.
+
 requestAnimationFrame(resize);
 setTimeout(resize, 300);
 
@@ -1407,15 +1358,11 @@ function scheduleResize() {
 window.addEventListener("resize", scheduleResize);
 window.addEventListener("orientationchange", () => setTimeout(resize, 250));
 
-// visualViewport fires reliably when a mobile browser's address bar
-// collapses/expands, which a plain window "resize" listener can miss.
+
 if (window.visualViewport) {
   window.visualViewport.addEventListener('resize', scheduleResize);
 }
 
-// Also watch the portrait box itself directly, since its height is
-// defined in vh/dvh and can change independently of the window firing
-// a resize event.
 if ('ResizeObserver' in window && canvas.parentElement) {
   const portraitObserver = new ResizeObserver(scheduleResize);
   portraitObserver.observe(canvas.parentElement);
