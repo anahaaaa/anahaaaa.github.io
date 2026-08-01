@@ -1326,3 +1326,9 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   * { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+@media (max-width: 700px) {
+  .bot-launcher img {
+    width: 100px !important;
+    height: 100px !important;
+  }
+}
