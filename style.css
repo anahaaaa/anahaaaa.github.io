@@ -348,6 +348,33 @@ main { position: relative; z-index: 1; }
   .hero-sub { max-width: 100%; font-size: 12.5px; }
 }
 
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.hero-icon-group {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .hero-actions { justify-content: center; }
+  .hero-cta-group,
+  .hero-icon-group { justify-content: center; width: 100%; }
+}
+
 /* ---------- SECTIONS ---------- */
 section { padding: 140px 8vw; }
 
@@ -745,9 +772,17 @@ section > * {
   box-shadow: 0 24px 60px rgba(0,0,0,0.3);
   transform-style: preserve-3d;
   cursor: grab;
+  overflow: hidden;               /* was visible — clip any overflow text */
   background-image:
     linear-gradient(90deg, rgba(0,0,0,0.05) 0%, transparent 3%),
     repeating-linear-gradient(0deg, transparent 0px, transparent 27px, rgba(128,128,128,0.035) 28px);
+}
+
+.paper-title,
+.paper-byline,
+.paper-columns p {
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .paper-page.dragging { cursor: grabbing; }
 
@@ -852,7 +887,20 @@ section > * {
   .paper-page { transition: opacity 0.2s ease; }
 }
 
+@media (max-width: 700px) {
+  .paper-columns { grid-template-columns: 1fr; gap: 14px; }
+  .paper-stage { height: 520px; }              /* was 460px — more room */
+  .paper-page { padding: 24px 20px 70px; }      /* extra bottom padding so footer never overlaps text */
+  .paper-footer { left: 20px; right: 20px; bottom: 18px; }
+  .paper-arrow { width: 34px; height: 34px; font-size: 15px; }
+  .paper-title { font-size: 1.3rem; }
+  .paper-columns p { font-size: 12px; line-height: 1.75; }
+}
 
+@media (max-width: 420px) {
+  .paper-stage { height: 560px; }
+  .paper-columns p { font-size: 11.5px; }
+}
  /*  STACK — ranked toolkit grid (rendered inside the shared tab-panel) */
 .stack-grid {
   display: grid;
@@ -1015,6 +1063,8 @@ section > * {
 @media (prefers-reduced-motion: reduce) {
   .tab-detail { animation: none; }
 }
+
+
 
 /* ---------- CONTACT ---------- */
 .contact-line { color: var(--ink-dim); font-size: 14px; margin-bottom: 30px; }
@@ -1331,4 +1381,143 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     width: 100px !important;
     height: 100px !important;
   }
+}
+
+/* ==========================================================
+   TAB PANEL — shared by Education, Experience & Stack
+   ========================================================== */
+.tab-panel {
+  display: flex;
+  gap: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-elevated);
+  overflow: hidden;
+  min-height: 340px;
+}
+
+.tab-list {
+  flex: 0 0 200px;
+  border-right: 1px solid var(--line);
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tab-list-item {
+  position: relative;
+  padding: 16px 24px;
+  font-size: 13.5px;
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: normal;
+  text-align: left;
+}
+.tab-list-item:hover { color: var(--ink); }
+.tab-list-item.active { color: var(--ink); background: var(--accent-dim); font-weight: 600; }
+[data-theme="light"] .tab-list-item.active { background: rgba(184,134,11,0.1); }
+.tab-list-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+}
+
+.tab-detail {
+  flex: 1;
+  padding: 36px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: tabFadeIn 0.3s ease;
+}
+.tab-detail .stack-grid { padding-top: 4px; }
+
+.tab-detail-title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  color: var(--ink);
+  line-height: 1.3;
+}
+.tab-detail-title .accent { color: var(--accent); }
+
+.tab-detail-date { font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-dim); }
+
+.tab-detail-points { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-top: 6px; }
+.tab-detail-points li { display: flex; align-items: flex-start; gap: 12px; font-size: 13.5px; line-height: 1.75; color: var(--ink-dim); }
+.tab-detail-points li::before { content: '▹'; color: var(--accent); flex-shrink: 0; margin-top: 2px; font-size: 13px; }
+
+.tab-detail-meta { font-size: 12px; color: var(--ink-dim); line-height: 1.7; }
+
+@keyframes tabFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Mobile: keep it a single vertical column, same as desktop —
+   just stack the panel itself (list on top, detail below) so
+   the sidebar isn't squeezed next to the content on narrow screens. */
+@media (max-width: 700px) {
+  .tab-panel { flex-direction: column; min-height: unset; }
+
+  .tab-list {
+    flex: none;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    padding: 8px 0;
+    max-height: 240px;
+    overflow-y: auto;
+  }
+
+  .tab-list-item { padding: 14px 20px; }
+
+  .tab-detail { padding: 28px 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-detail { animation: none; }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: 100dvh;
+    padding: 80px 6vw 30px;
+    justify-content: center;
+  }
+  .hero-inner {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 4px;
+    text-align: center;
+    margin: auto 0;
+  }
+  .hero-portrait {
+    order: 1;
+    width: 100%;
+    max-width: 100%;
+    height: 30dvh;
+    min-height: 200px;
+    margin-top: 0;
+    margin-left: -6vw;   /* shift the ascii art slightly left */
+  }
+  .hero-text { order: 2; max-width: 100%; text-align: left; }
+  .hero-title { font-size: clamp(2.2rem, 11vw, 4rem); }
+  .hero-sub { font-size: 13px; margin-top: 10px; max-width: 100%; margin-inline: auto; }
+  .hero-actions { justify-content: center; margin-top: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 70px 6vw 24px; }
+  .hero-portrait {
+    height: 24dvh;
+    min-height: 170px;
+    margin-left: -5vw;
+  }
+  .hero-title { font-size: clamp(1.9rem, 12vw, 3rem); }
+  .hero-sub { max-width: 100%; font-size: 12.5px; margin-top: 8px; }
 }
