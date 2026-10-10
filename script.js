@@ -97,6 +97,16 @@ const EDUCATION_ITEMS = [
 
 const EXPERIENCE_ITEMS = [
   {
+    tabLabel: 'Piramal Finance',
+    titlePlain: 'AI Engineer @ ',
+    titleAccent: 'Piramal Finance',
+    date: 'OCT 2026 – PRESENT',
+    meta: 'Talisma HR Solutions Pvt. Ltd. (Third-party payroll)',
+    points: [
+      "Working as an AI Engineer at Piramal Finance through Talisma HR Solutions Pvt. Ltd."
+    ]
+  },
+  {
     tabLabel: 'IIT Madras',
     titlePlain: 'AI/ML Research Intern @ ',
     titleAccent: 'IIT Madras',
@@ -1036,9 +1046,9 @@ Cloud/Ops: Git, GitHub, AWS, Linux
     };
   }
 
-  if (/experience|intern|job|work history|iit/.test(t)) {
+  if (/experience|intern|job|work history|iit|piramal|ai engineer|talisma/.test(t)) {
     return {
-      reply: `Anagha gained research experience as an AI/ML Research Intern at IIT Madras, where she worked on bearing fault diagnosis using deep learning. Alongside this, she has built several AI and backend projects and actively contributes to open-source software.`,
+      reply: `Anagha is currently working as an AI Engineer at Piramal Finance through Talisma HR Solutions Pvt. Ltd. She is building her expertise in Python, FastAPI, Docker, and AI application development. Previously, she worked as an AI/ML Research Intern at IIT Madras, where she developed deep learning models for bearing fault diagnosis and investigated transfer learning across industrial bearing datasets. She has also built several AI and backend projects and actively contributes to open-source software.`,
       chips: DEFAULT_CHIPS
     };
   }
